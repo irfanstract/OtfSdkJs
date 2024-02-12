@@ -1,0 +1,55 @@
+{
+  "extends": "../../tsconfig.json" ,
+  "compilerOptions": {
+    "module": "esnext",
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "isolatedModules": true,
+    "noEmit": true /* using TS-Node or ESBuild, never the CLI `tsc` - https://github.com/microsoft/TypeScript/pull/51669 */ ,
+    
+    /* these three is at the heart of typechecking */
+
+    "strict": true,
+    "noImplicitAny": true, // '"strict": true ' did not enforce this
+    // without this
+    // the type-system would be unsound as
+    // `tsc` would pretend indexed array items always exists which cannot be proven.
+    // i believe `tsc init` should have done this.
+    "noUncheckedIndexedAccess": true, 
+    // more likely a bug, than not
+    "noFallthroughCasesInSwitch": true,
+    
+    /* *reference libs* */
+    
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext",
+    ],
+    "skipLibCheck": true,
+    // "checkJs": false,
+    "checkJs": true,
+    "incremental": true,
+    "jsx": "preserve",
+    "plugins": [
+      {
+        "name": "next"
+      } ,
+    ] ,
+    
+    
+  },
+  "include": [
+    "next-env.d.ts",
+    ".next/types/**/*.ts" ,
+    "**/*.ts",
+    "**/*.tsx",
+  ],
+
+  "exclude": [
+    "node_modules",
+  ],
+
+}
